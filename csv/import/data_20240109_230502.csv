@@ -1,0 +1,21 @@
+JOB_ID,JOB_TITLE,MIN_SALARY,MAX_SALARY
+PU_MAN,Purchasing Manager,15791,33911
+SA_MAN,Sales Manager,16430,16724
+MK_MAN,Marketing Manager,20045,31643
+SH_CLERK,Shipping Clerk,29389,39038
+PR_REP,Public Relations Representative,35506,36727
+ST_CLERK,Stock Clerk,12483,19485
+AC_ACCOUNT,Public Accountant,35691,38946
+IT_PROG,Programmer,25197,27066
+PR_REP,Public Relations Representative,11707,35637
+ST_MAN,Stock Manager,8882,17109
+FI_MGR,Finance Manager,5866,39341
+ST_MAN,Stock Manager,28485,34463
+AD_VP,Administration Vice President,28140,35802
+ST_MAN,Stock Manager,18474,33410
+AC_ACCOUNT,Public Accountant,38154,39877
+SH_CLERK,Shipping Clerk,23899,28345
+AC_MGR,Accounting Manager,14285,28752
+AD_ASST,Administration Assistant,6895,34242
+AD_PRES,President,32809,38331
+ST_CLERK,Stock Clerk,34471,37163

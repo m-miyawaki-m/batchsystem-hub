@@ -1,0 +1,21 @@
+JOB_ID,JOB_TITLE,MIN_SALARY,MAX_SALARY
+SA_REP,Sales Representative,10905,17533
+ST_CLERK,Stock Clerk,32958,39845
+AD_ASST,Administration Assistant,26981,31954
+MK_MAN,Marketing Manager,8782,11790
+ST_CLERK,Stock Clerk,34639,39256
+IT_PROG,Programmer,15070,25774
+IT_PROG,Programmer,12376,18963
+MK_MAN,Marketing Manager,26546,29948
+AD_PRES,President,37448,39600
+PU_MAN,Purchasing Manager,15727,24181
+ST_MAN,Stock Manager,4408,32699
+PU_MAN,Purchasing Manager,8163,14860
+AD_PRES,President,10780,38707
+MK_REP,Marketing Representative,7536,29097
+MK_REP,Marketing Representative,19528,37650
+AD_VP,Administration Vice President,13495,26025
+MK_MAN,Marketing Manager,4458,34003
+MK_REP,Marketing Representative,37201,38668
+ST_MAN,Stock Manager,22980,32925
+IT_PROG,Programmer,16918,28383
