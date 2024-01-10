@@ -7,4 +7,10 @@
 5. ビルドが成功したことを確認します。成功した場合、ターミナルの出力には "BUILD SUCCESS" と表示されます。
 6. これらの手順を実行することで、新しい親モジュールが正しく設定され、ローカルの Maven リポジトリにインストールされていることを確認できます。
 
-
+### wsl用のsetting.json例（windows上とはjdkの設定を変更する必要がある）
+```
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.home": "/usr/lib/jvm/java-17-openjdk-amd64"
+}
+```
