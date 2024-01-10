@@ -2,11 +2,11 @@ package com.miyawaki.batchsystem.csvimporter;
 
 import java.io.IOException;
 
-import com.miyawaki.batchsystem.csvimporter.csv.CsvDbImporter;
+import com.miyawaki.batchsystem.csvimporter.service.CsvDatabaseImporter;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        CsvDbImporter csvDbImporter = new CsvDbImporter();
+        CsvDatabaseImporter csvDbImporter = new CsvDatabaseImporter();
         csvDbImporter.execute();
     }
 }

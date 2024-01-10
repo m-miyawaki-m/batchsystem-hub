@@ -1,4 +1,4 @@
-package com.miyawaki.batchsystem.csvexporter.util;
+package com.miyawaki.batchsystem.csvimporter.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

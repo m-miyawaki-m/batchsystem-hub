@@ -1,4 +1,4 @@
-package com.miyawaki.batchsystem.csvimporter.csv;
+package com.miyawaki.batchsystem.csvimporter.service;
 
 import java.io.File;
 import java.io.FileReader;
@@ -17,20 +17,20 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.miyawaki.batchsystem.csvimporter.dto.JobsDto;
-import com.miyawaki.batchsystem.csvimporter.util.DatabaseConfig;
-import com.miyawaki.batchsystem.csvimporter.util.DatabaseConnectionManager;
+import com.miyawaki.batchsystem.csvimporter.repository.DatabaseConfig;
+import com.miyawaki.batchsystem.csvimporter.repository.DatabaseConnectionManager;
 
-public class CsvDbImporter {
+public class CsvDatabaseImporter {
 
     private DatabaseConfig config;
     private DatabaseConnectionManager dbConnectionManager;
 
-    public CsvDbImporter() {
+    public CsvDatabaseImporter() {
         config = new DatabaseConfig();
         dbConnectionManager = new DatabaseConnectionManager(config);
     }
 
-    public List<JobsDto> readCsvFile(String filePath) throws IOException {
+    private List<JobsDto> readCsvFile(String filePath) throws IOException {
         List<JobsDto> jobList = new ArrayList<>();
         try (CSVParser parser = new CSVParser(new FileReader(filePath), CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
             for (CSVRecord record : parser) {
@@ -45,7 +45,7 @@ public class CsvDbImporter {
         return jobList;
     }
 
-    public void importToDatabase(List<JobsDto> jobList) {
+    private void importToDatabase(List<JobsDto> jobList) {
         // まずテーブルをトランケート
         // truncateTable("jobs_bk");
 
@@ -65,7 +65,7 @@ public class CsvDbImporter {
         }
     }
 
-    public void truncateTable(String tableName) {
+    private void truncateTable(String tableName) {
         String sql = "TRUNCATE TABLE " + tableName;
         try (Connection connection = dbConnectionManager.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -86,17 +86,31 @@ public class CsvDbImporter {
             // ファイルを最終変更日時でソート
             Arrays.sort(files, Comparator.comparingLong(File::lastModified));
 
-            // 最も古いファイルのパスを取得
-            File oldestFile = files[0];
-            String oldestFilePath = oldestFile.getAbsolutePath();
+            String filePath = "";
 
-            // 最も古いファイルを読み込む
+            // 最も古いファイルのパスを取得
+            // filePath = getOldestFilePath(files);
+
+            // 最も新しいファイルのパスを取得
+            filePath = getNewestFilePath(files);
+
             try {
-                List<JobsDto> jobsList = readCsvFile(oldestFilePath);
+                List<JobsDto> jobsList = readCsvFile(filePath);
                 importToDatabase(jobsList);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
+    }
+
+    private String getOldestFilePath(File[] files) {
+        Arrays.sort(files, Comparator.comparingLong(File::lastModified));
+        return files[0].getAbsolutePath();
+    }
+
+    private String getNewestFilePath(File[] files) {
+        Arrays.sort(files, Comparator.comparingLong(File::lastModified));
+        return files[files.length - 1].getAbsolutePath();
     }
 }

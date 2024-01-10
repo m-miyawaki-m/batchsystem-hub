@@ -1,8 +1,8 @@
-package com.miyawaki.batchsystem.csvgenerator.generator;
+package com.miyawaki.batchsystem.csvgenerator.service;
 
 import org.apache.commons.csv.*;
 
-import com.miyawaki.batchsystem.csvgenerator.enumjobtitle.JobTitle;
+import com.miyawaki.batchsystem.csvgenerator.util.JobTitle;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,8 +16,13 @@ public class RandomDataGenerator {
     private final int MAX_SALARY = 40000;
     private final Random random = new Random();
 
-    public void generateCsvFile(int recordCount) {
-        String filePath = "./csv/";
+    public void execute() {
+        int recordCount = 5;
+        generateCsvFile(recordCount);
+    }
+
+    private void generateCsvFile(int recordCount) {
+        String filePath = "./csv/generate/";
 
         // 現在の日時を取得してフォーマットする
         LocalDateTime now = LocalDateTime.now();

@@ -1,4 +1,4 @@
-package com.miyawaki.batchsystem.csvimporter.util;
+package com.miyawaki.batchsystem.csvimporter.repository;
 
 import java.io.IOException;
 import java.io.InputStream;

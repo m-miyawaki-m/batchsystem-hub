@@ -1,4 +1,4 @@
-package com.miyawaki.batchsystem.csvcleaner.csv;
+package com.miyawaki.batchsystem.csvcleaner.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,8 +7,13 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class CsvCleaner {
+    private String directoryPath;
+
+    public CsvCleaner(String directoryPath) {
+        this.directoryPath = directoryPath;
+    }
+
     public void execute(int csvCount) {
-        String directoryPath = "./csv/";
         File directory = new File(directoryPath);
 
         // ディレクトリ内のCSVファイルを取得

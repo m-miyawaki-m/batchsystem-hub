@@ -1,4 +1,4 @@
-package com.miyawaki.batchsystem.csvexporter.csv;
+package com.miyawaki.batchsystem.csvexporter.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,16 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.miyawaki.batchsystem.csvexporter.util.DatabaseConnectionManager;
+import com.miyawaki.batchsystem.csvexporter.repository.DatabaseConfig;
+import com.miyawaki.batchsystem.csvexporter.repository.DatabaseConnectionManager;
+import com.miyawaki.batchsystem.csvexporter.util.CsvWriter;
 
-public class DatabaseDataExporter {
+public class DatabaseCsvExporter {
     private DatabaseConnectionManager dbConnectionManager;
 
-    public DatabaseDataExporter(DatabaseConnectionManager dbConnectionManager) {
-        this.dbConnectionManager = dbConnectionManager;
+    public DatabaseCsvExporter() {
+        this.dbConnectionManager = new DatabaseConnectionManager(new DatabaseConfig());
     }
 
-    public List<String[]> fetchViewData() throws SQLException {
+    private List<String[]> fetchViewData() throws SQLException {
         List<String[]> data = new ArrayList<>();
         String sql = "SELECT * FROM hr.employees_jobs_v";
 
@@ -35,5 +37,16 @@ public class DatabaseDataExporter {
         }
 
         return data;
+    }
+
+    public void execute() {
+        try {
+            List<String[]> viewData = fetchViewData();
+
+            CsvWriter writer = new CsvWriter();
+            writer.writeToCsv(viewData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

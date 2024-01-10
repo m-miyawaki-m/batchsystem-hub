@@ -1,4 +1,4 @@
-package com.miyawaki.batchsystem.csvgenerator.enumjobtitle;
+package com.miyawaki.batchsystem.csvgenerator.util;
 
 public enum JobTitle {
     AD_PRES("President"),
