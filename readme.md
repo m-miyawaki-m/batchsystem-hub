@@ -14,3 +14,12 @@
     "java.home": "/usr/lib/jvm/java-17-openjdk-amd64"
 }
 ```
+
+
+
+### lombokを認識しない場合の対策
+1. VSCODEの拡張機能のインストール
+2. mavenフォルダを検索しsetting.jsonに記載
+```
+find ~/.m2 -name 'lombok*.jar'
+```
