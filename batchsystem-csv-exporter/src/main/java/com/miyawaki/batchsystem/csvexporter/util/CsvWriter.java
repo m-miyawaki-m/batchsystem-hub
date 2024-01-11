@@ -12,7 +12,7 @@ import java.util.List;
 public class CsvWriter {
 
     public void writeToCsv(List<String[]> data) throws IOException {
-        String filePath = "./csv/export/";
+        String filePath = "../csv/export/";
 
         // 現在の日時を取得してフォーマットする
         LocalDateTime now = LocalDateTime.now();

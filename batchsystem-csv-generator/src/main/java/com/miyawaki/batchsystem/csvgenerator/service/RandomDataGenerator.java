@@ -22,7 +22,7 @@ public class RandomDataGenerator {
     }
 
     private void generateCsvFile(int recordCount) {
-        String filePath = "./csv/generate/";
+        String filePath = "../csv/generate/";
 
         // 現在の日時を取得してフォーマットする
         LocalDateTime now = LocalDateTime.now();

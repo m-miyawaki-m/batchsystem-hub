@@ -76,7 +76,7 @@ public class CsvDatabaseImporter {
     }
 
     public void execute() {
-        String directoryPath = "./csv/import";
+        String directoryPath = "../csv/import";
         File directory = new File(directoryPath);
 
         // ディレクトリ内のCSVファイルを取得
