@@ -30,6 +30,7 @@
     <module>batchsystem-csv-generator</module>
     <module>batchsystem-csv-cleaner</module>
     <module>batchsystem-csv-exporter</module>
+    <module>batchsystem-api-rest</module>
   </modules>
 
   <dependencies>
