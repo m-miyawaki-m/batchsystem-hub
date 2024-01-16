@@ -1,14 +1,15 @@
 package com.miyawaki.batchsystem.csvgenerator.service;
 
-import org.apache.commons.csv.*;
-
-import com.miyawaki.batchsystem.csvgenerator.util.JobTitle;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+
+import com.miyawaki.batchsystem.csvgenerator.util.JobTitle;
 
 public class RandomDataGenerator {
 
@@ -22,7 +23,11 @@ public class RandomDataGenerator {
     }
 
     private void generateCsvFile(int recordCount) {
-        String filePath = "../csv/generate/";
+        // 環境変数からファイルパスを取得する
+        String filePath = System.getenv("FILE_PATH_TO_CSV_GENERATE");
+        if (filePath == null) {
+            filePath = "../csv/generate/"; // デフォルトのパス
+        }
 
         // 現在の日時を取得してフォーマットする
         LocalDateTime now = LocalDateTime.now();

@@ -2,17 +2,17 @@ package com.miyawaki.batchsystem.csvcleaner.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CsvCleaner {
     private String directoryPath;
+
+    private static final Logger logger = LogManager.getLogger(CsvCleaner.class);
 
     public CsvCleaner(String directoryPath) {
         this.directoryPath = directoryPath;
@@ -42,22 +42,32 @@ public class CsvCleaner {
     }
 
     public void deleteCsvFiles() {
-        String[] directories = {"../csv/import/", "../csv/export/", "../csv/generate/"};
+        // String[] directories = {"../csv/import/", "../csv/export/", "../csv/generate/"};
+
+        // 環境変数 DIRECTORIES を読み込む
+        // デバッグ時の設定例
+        // BASE_PATH=/home/vscode/github/batchsystem-hub/
+        // directories=("${BASE_PATH}csv/import/" "${BASE_PATH}csv/export/" "${BASE_PATH}csv/generate/")
+        // export CSV_DIRECTORIES="${directories[@]}"
+        String[] directories = System.getenv("CSV_DIRECTORIES").split(" ");
 
         for (String directory : directories) {
-            try {
-                Files.walkFileTree(Paths.get(directory), new SimpleFileVisitor<Path>() {
-                    @Override
-                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                        if (file.toString().endsWith(".csv")) {
-                            Files.delete(file);
-                        }
-                        return FileVisitResult.CONTINUE;
+            File dirFile = new File(directory);
+            File[] files = dirFile.listFiles((dir, name) -> name.toLowerCase().endsWith(".csv"));
+
+            int deleteCount = 0;
+            if (files != null) {
+                for (File file : files) {
+                    try {
+                        Files.deleteIfExists(file.toPath());
+                        deleteCount++;
+                    } catch (IOException e) {
+                        logger.error("Error deleting file: " + file.getAbsolutePath(), e);
                     }
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
+                }
             }
+    
+            logger.info("Deleted " + deleteCount + " files from directory: " + directory);
         }
     }
 }

@@ -1,3 +1,21 @@
+
+### 実行シェル作成の注意
+外部ライブラリのクラスパス設定を含める
+
+
+
+
+### 個別にビルド
+
+```
+//親のルートディレクトリ
+mvn -pl batchsystem-csv-generator clean install
+jar tf ./batchsystem-scripts/batchsystem-csv-generator-1.0-SNAPSHOT.jar
+```
+
+
+
+
 ### 新しい親モジュールが正しく設定され、ローカルの Maven リポジトリにインストールされていることを確認するには、以下の手順を実行します：
 
 1. 親モジュールのプロジェクトディレクトリに移動します。
