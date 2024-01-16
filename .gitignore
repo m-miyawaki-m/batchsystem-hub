@@ -38,4 +38,8 @@ hs_err_pid*
 /.vscode/
 
 # Maven
-/target/
+target/
+
+# link
+*.lnk
+
