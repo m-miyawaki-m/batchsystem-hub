@@ -7,6 +7,7 @@ BASE_PATH=/home/vscode/github/batchsystem-hub/
 directories=("${BASE_PATH}csv/import/" "${BASE_PATH}csv/export/" "${BASE_PATH}csv/generate/")
 
 # 環境変数に設定
+export BASE_PATH="${BASE_PATH}"
 export CSV_DIRECTORIES="${directories[@]}"
 
 # クラスパスの設定
