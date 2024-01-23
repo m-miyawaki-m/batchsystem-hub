@@ -42,12 +42,14 @@ public class CsvCleaner {
     }
 
     public void deleteCsvFiles() {
-        // String[] directories = {"../csv/import/", "../csv/export/", "../csv/generate/"};
+        // String[] directories = {"../csv/import/", "../csv/export/",
+        // "../csv/generate/"};
 
         // 環境変数 DIRECTORIES を読み込む
         // デバッグ時の設定例
         // BASE_PATH=/home/vscode/github/batchsystem-hub/
-        // directories=("${BASE_PATH}csv/import/" "${BASE_PATH}csv/export/" "${BASE_PATH}csv/generate/")
+        // directories=("${BASE_PATH}csv/import/" "${BASE_PATH}csv/export/"
+        // "${BASE_PATH}csv/generate/")
         // export CSV_DIRECTORIES="${directories[@]}"
         String[] directories = System.getenv("CSV_DIRECTORIES").split(" ");
 
@@ -66,7 +68,6 @@ public class CsvCleaner {
                     }
                 }
             }
-    
             logger.info("Deleted " + deleteCount + " files from directory: " + directory);
         }
     }
