@@ -8,10 +8,14 @@ import java.util.Random;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.miyawaki.batchsystem.csvgenerator.util.JobTitle;
 
 public class RandomDataGenerator {
+
+    private static final Logger logger = LogManager.getLogger(RandomDataGenerator.class);
 
     private final int MIN_SALARY = 3000;
     private final int MAX_SALARY = 40000;
@@ -26,7 +30,7 @@ public class RandomDataGenerator {
         // 環境変数からファイルパスを取得する
         String filePath = System.getenv("FILE_PATH_TO_CSV_GENERATE");
         if (filePath == null) {
-            filePath = "../csv/generate/"; // デフォルトのパス
+            filePath = "/home/vscode/github/batchsystem-hub/csv/generate/"; // デフォルトのパス
         }
 
         // 現在の日時を取得してフォーマットする
@@ -47,8 +51,10 @@ public class RandomDataGenerator {
                 printer.printRecord(jobTitle.getJobId(), jobTitle.getTitle(), minSalary, maxSalary);
             }
         } catch (IOException e) {
+            logger.error("Error generating file: ", e);
             e.printStackTrace();
         }
+        logger.info("Generated files from directory: " + fullFilePath);
     }
 
     private JobTitle getRandomJobTitle() {

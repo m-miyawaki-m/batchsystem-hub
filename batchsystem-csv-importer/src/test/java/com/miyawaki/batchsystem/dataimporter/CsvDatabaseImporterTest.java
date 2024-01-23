@@ -1,10 +1,10 @@
 package com.miyawaki.batchsystem.dataimporter;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 import com.miyawaki.batchsystem.csvimporter.service.CsvDatabaseImporter;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CsvDatabaseImporterTest {
 
