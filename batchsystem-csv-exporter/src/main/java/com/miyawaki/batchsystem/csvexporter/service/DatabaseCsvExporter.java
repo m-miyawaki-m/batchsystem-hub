@@ -20,7 +20,8 @@ public class DatabaseCsvExporter {
 
     private List<String[]> fetchViewData() throws SQLException {
         List<String[]> data = new ArrayList<>();
-        String sql = "SELECT * FROM hr.employees_jobs_v";
+        // String sql = "SELECT * FROM hr.employees_jobs_v";
+        String sql = "SELECT * FROM hr.jobs";
 
         try (Connection connection = dbConnectionManager.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
@@ -28,8 +29,8 @@ public class DatabaseCsvExporter {
 
             while (resultSet.next()) {
                 // ビューの各列を取得してリストに追加
-                String[] row = new String[13]; // 13は選択された列の数
-                for (int i = 1; i <= 13; i++) {
+                String[] row = new String[4]; // 13は選択された列の数
+                for (int i = 1; i <= 4; i++) {
                     row[i - 1] = resultSet.getString(i);
                 }
                 data.add(row);
