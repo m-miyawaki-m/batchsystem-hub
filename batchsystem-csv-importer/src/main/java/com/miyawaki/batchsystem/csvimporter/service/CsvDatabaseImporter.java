@@ -68,6 +68,7 @@ public class CsvDatabaseImporter {
         try (Connection connection = dbConnectionManager.getConnection();
                 PreparedStatement statement = connection.prepareStatement(insertSql)) {
             // データをインポート
+            System.out.println("インポート開始");
             for (JobsDto job : jobList) {
                 statement.setString(1, job.getJobId());
                 statement.setString(2, job.getJobTitle());
@@ -116,12 +117,12 @@ public class CsvDatabaseImporter {
     }
 
     public void execute() {
-        String directoryPath = "../csv/import";
+        String directoryPath = "../csv/import/";
         File directory = new File(directoryPath);
 
         // ディレクトリ内のCSVファイルを取得
         File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".csv"));
-
+        System.out.println("ファイル数: " + files.length);
         if (files != null) {
             // ファイルを最終変更日時でソート
             Arrays.sort(files, Comparator.comparingLong(File::lastModified));
